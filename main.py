@@ -140,6 +140,18 @@ def mid_level_fusion(data_dir, index=0, display_image=True, save_image=False):
 
 
 if __name__ == "__main__":
-    data_dir = "//home//alejandro-fernandez//ros2_ws//src//proyeccion//proyeccion//Data//"
-    # low_level_fusion(data_dir, show_random_pcl=False, display_video=True, save_video=False)
-    mid_level_fusion(data_dir, index=0, display_image=True, save_image=False)
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Camera + 3D LiDAR fusion (YOLOv4 + point-cloud projection)")
+    parser.add_argument("--data-dir", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "Data") + os.sep,
+                        help="folder with images/, points/, labels/, calibs/ and model/yolov4/")
+    parser.add_argument("--mode", choices=["image", "video"], default="image",
+                        help="image: mid-level fusion on one frame; video: low-level fusion on test/video4")
+    parser.add_argument("--index", type=int, default=0, help="frame index for --mode image")
+    parser.add_argument("--save", action="store_true", help="write the result to Data/output/")
+    args = parser.parse_args()
+
+    if args.mode == "video":
+        low_level_fusion(args.data_dir, show_random_pcl=False, display_video=True, save_video=args.save)
+    else:
+        mid_level_fusion(args.data_dir, index=args.index, display_image=True, save_image=args.save)
