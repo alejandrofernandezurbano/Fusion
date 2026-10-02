@@ -88,4 +88,3 @@ Python · OpenCV · YOLOv4 · Open3D · NumPy · SciPy · PyTorch · ROS2 (in tr
 ## Author
 
 Alejandro Fernández Urbano — Mechatronics Engineer (UAO, 2024).
-[LinkedIn](https://www.linkedin.com/in/alejandro-fernandez-urbano) · alejandrofernandezurbano@gmail.com
